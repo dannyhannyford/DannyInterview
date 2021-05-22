@@ -1,10 +1,15 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {Navigation} from 'react-native-navigation';
+import TodoInput from './TodoInput';
+import TodosList from './Todos.js/TodosList';
 
 const AddTodos = () => {
   return (
     <View style={styles.root}>
       <Text>AddTodos works!</Text>
+      <TodoInput />
+      <TodosList />
     </View>
   );
 };
