@@ -1,31 +1,25 @@
 import {combineReducers} from 'redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   ADD_TODO,
   TOGGLE_TODO,
   DELETE_TODO,
   TODOS_LOADED,
-} from './../actions/action';
+} from '../actions/action';
 
 const initialState = {
   todos: [],
 };
 
-function nextTodoId(todos) {
-  const maxId = todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1);
-  return maxId + 1;
-}
-
 function todosReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO: {
-      const {text} = action.payload;
+      const {todo} = action.payload;
+
       return {
         ...state,
-        todos: [
-          ...state.todos,
-          {id: nextTodoId(state.todos), text: text, completed: false},
-        ],
+        todos: [...state.todos, todo],
       };
     }
     case DELETE_TODO: {
