@@ -40,9 +40,8 @@ function todosReducer(state = initialState, action) {
     }
     case TOGGLE_TODO: {
       const updatedTodos = state.todos.map(todo => {
-        return todo.id === action.id
-          ? {...todo, completed: !todo.completed}
-          : todo;
+        const {id} = action.payload;
+        return todo.id === id ? {...todo, completed: !todo.completed} : todo;
       });
       return {
         ...state,
