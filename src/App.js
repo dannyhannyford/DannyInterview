@@ -6,19 +6,19 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import HomeScreen from './screens/HomeScreen';
+import {useDispatch} from 'react-redux';
+import {fetchTodos} from './actions/action';
+import {Navigation} from 'react-native-navigation';
 
 const App = props => {
-  return <HomeScreen componentId={props.componentId} />;
-};
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchTodos);
+  }, []);
 
-App.options = {
-  topBar: {
-    title: {
-      text: 'Home',
-    },
-  },
+  return <HomeScreen componentId={props.componentId} />;
 };
 
 export default App;

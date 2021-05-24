@@ -1,17 +1,14 @@
 import {combineReducers} from 'redux';
-import {dummyData} from '../utils/dummyData';
 
-// temp
-// const initState = {};
-// export const reducer = (state = initState, action) => {
-//   switch (action.type) {
-//     default:
-//       return state;
-//   }
-// };
+import {
+  ADD_TODO,
+  TOGGLE_TODO,
+  DELETE_TODO,
+  TODOS_LOADED,
+} from './../actions/action';
 
 const initialState = {
-  todos: dummyData,
+  todos: [],
 };
 
 function nextTodoId(todos) {
@@ -21,39 +18,40 @@ function nextTodoId(todos) {
 
 function todosReducer(state = initialState, action) {
   switch (action.type) {
-    case 'todos/todoAdded': {
+    case ADD_TODO: {
+      const {text} = action.payload;
       return {
         ...state,
-        todos: {
-          id: nextTodoId(state),
-          text: action.payload,
-          completed: false,
-        },
+        todos: [
+          ...state.todos,
+          {id: nextTodoId(state.todos), text: text, completed: false},
+        ],
       };
     }
-    // case 'todos/todoToggled': {
-    //   return state.map(todo => {
-    //     if (todo.id !== action.payload) {
-    //       return todo;
-    //     }
-
-    //     return {
-    //       ...todo,
-    //       completed: !todo.completed,
-    //     };
-    //   });
-    // }
-    // case 'todos/todoDeleted': {
-    //   return state.filter(todo => todo.id !== action.payload);
-    // }
-    // case 'todos/allCompleted': {
-    //   return state.map(todo => {
-    //     return {...todo, completed: true};
-    //   });
-    // }
-    // case 'todos/completedCleared': {
-    //   return state.filter(todo => !todo.completed);
-    // }
+    case DELETE_TODO: {
+      const {id} = action.payload;
+      const updatedTodos = state.todos.filter(todo => {
+        return todo.id !== id;
+      });
+      return {
+        ...state,
+        todos: updatedTodos,
+      };
+    }
+    case TOGGLE_TODO: {
+      const updatedTodos = state.todos.map(todo => {
+        return todo.id === action.id
+          ? {...todo, completed: !todo.completed}
+          : todo;
+      });
+      return {
+        ...state,
+        todos: updatedTodos,
+      };
+    }
+    case TODOS_LOADED: {
+      return {...state, todos: action.payload};
+    }
     default:
       return state;
   }

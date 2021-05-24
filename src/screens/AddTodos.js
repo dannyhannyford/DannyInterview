@@ -1,13 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Navigation} from 'react-native-navigation';
+import TodosList from './todos/TodosList';
 import TodoInput from './TodoInput';
-import TodosList from './Todos.js/TodosList';
 
 const AddTodos = () => {
   return (
     <View style={styles.root}>
-      <Text>AddTodos works!</Text>
       <TodoInput />
       <TodosList />
     </View>
@@ -15,7 +14,11 @@ const AddTodos = () => {
 };
 
 AddTodos.options = {
+  statusBar: {
+    visible: false,
+  },
   topBar: {
+    drawBehind: false,
     title: {
       text: 'AddTodos',
     },
@@ -24,6 +27,7 @@ AddTodos.options = {
 
 const styles = StyleSheet.create({
   root: {
+    paddingTop: '15%',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

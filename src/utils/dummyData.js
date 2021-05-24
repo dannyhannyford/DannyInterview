@@ -1,16 +1,16 @@
 export const dummyData = [
   {
-    id: 'a',
+    id: 0,
     text: 'hello',
     completed: false,
   },
   {
-    id: 'b',
+    id: 1,
     text: 'test',
     completed: false,
   },
   {
-    id: 'c',
+    id: 2,
     text: 'data',
     completed: false,
   },

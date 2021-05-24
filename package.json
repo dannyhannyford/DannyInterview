@@ -7,15 +7,15 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint .",
-    "react-devtools": "react-devtools"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.4",
     "react": "17.0.1",
     "react-native": "0.64.1",
-    "react-native-linear-gradient": "^2.5.6",
+    "react-native-bouncy-checkbox": "^2.1.1",
     "react-native-navigation": "^7.14.0",
+    "react-native-vector-icons": "^8.1.0",
     "react-redux": "^7.2.4",
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
@@ -30,7 +30,6 @@
     "eslint": "7.14.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.64.0",
-    "react-devtools": "^4.13.4",
     "react-test-renderer": "17.0.1"
   },
   "jest": {
